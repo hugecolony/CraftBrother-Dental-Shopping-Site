@@ -1,0 +1,89 @@
+﻿ @model IEnumerable<CraftBrothers.Models.Category>
+ <div class="container p-3">
+     <div class="row pt-4">
+         <div class="col-6">
+             <h2 class="text-primary">Category List</h2>
+         </div>
+         <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+             Create New Category
+             </a>
+         </div>
+     </div>
+     <br /><br />
+   @* <div>
+        <form method="post" action="ProductTable">
+            <input id="searchTxt" name="Search" />
+             <div class="col-6 text-right">
+            <a asp-controller="Category" asp-action="ProductTable" class="btn btn-primary">
+             Search
+             </a>
+         </div>
+        </form>
+    </div>*@
+
+     @if(Model.Count()>0){
+         <table class="table table-bordered table-striped" style="width:100%">
+             <thead>
+                 <tr>
+                     <th>
+                         Category Name
+                     </th>
+
+                    <th>
+                        Category Description
+                    </th>
+                    <th></th>
+                 </tr>
+             </thead>
+             <tbody>
+                 @foreach(var obj in Model){
+                     <tr>
+                         <td width="50%">
+                             @obj.Name
+                         </td>
+
+                        <td width="50%">
+                            @obj.Description
+                        </td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                 <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Edit" class="btn btn-primary">
+                                     Edit</a>
+                                <a asp-controller="Category" asp-route-Id="@obj.Id" asp-action="Delete" class="btn btn-danger">
+                                    Delete
+                                    </a>
+                            </div>
+                        </td>
+                     </tr>
+                 }
+             </tbody>
+         </table>
+     
+     }
+     else{
+         <p>No category Exists</p>
+     }
+ </div>
+
+ @*@section Scripts{
+ <script>
+     $("$searchBtn").click(function(){
+         var searchValue = $("#searchTxt").val();
+         $.ajax({
+             url:'CategoryController'
+             data:{
+                 search:searchValue
+             }
+         })
+         .done(function(response){
+             $("#tableContainer").html(response);
+         })
+         .fail(function(XMLHttpRequest,textStatus,errorThrown){
+             alert("FAIL");
+         });
+     });
+ </script>
+
+ }
+*@
