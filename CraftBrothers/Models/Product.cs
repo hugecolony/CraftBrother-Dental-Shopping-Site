@@ -11,9 +11,9 @@ namespace CraftBrothers.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required]
-        public string Description { get; set; }
+        public string? Description { get; set; }
         [Range(1,int.MaxValue)]
         public decimal Price { get; set; }
 
@@ -26,7 +26,7 @@ namespace CraftBrothers.Models
         [ForeignKey("BrandId")]
         public virtual Brand Brand { get; set; }
 
-        public string Image { get; set; }
+        public string? Image { get; set; }
         
     }
 }
