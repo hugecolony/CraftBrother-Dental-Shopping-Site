@@ -108,8 +108,24 @@ namespace CraftBrothers.Controllers
                 {
                     //updating
                     var objFromDb = _db.Products.AsNoTracking().FirstOrDefault(u => u.Name == productVM.Product.Name);
+                    if (objFromDb == null)
+                        {
+                            string upload = webRootPath + WC.ImagePath;
+                            string fileName = Guid.NewGuid().ToString();
+                            string extension = Path.GetExtension(files[0].FileName);
+
+                            using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                            {
+                                files[0].CopyTo(fileStream);
+                            }
+                            productVM.Product.Image = fileName + extension;
+                            _db.Products.Add(productVM.Product);
+                            _db.SaveChanges();
+                            return RedirectToAction("Index");
+
+                    }
                     if (files.Count() > 0)
-                    {
+                            {
                         string upload = webRootPath + WC.ImagePath;
                         string fileName = Guid.NewGuid().ToString();
                         string extension = Path.GetExtension(files[0].FileName);

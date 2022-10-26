@@ -1,10 +1,11 @@
 ﻿using CraftBrothers.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace CraftBrothers.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
 
     {
      public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

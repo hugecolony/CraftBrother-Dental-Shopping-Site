@@ -17,9 +17,12 @@
             <div class="card-body p-4">
                 <div class="text-center">
                     <!-- Product name-->
-                    <h5 class="fw-bolder">@Model.Name</h5>
-                <!-- Product price-->
-                  <label class="float-right"><span class="text-info h5">@string.Concat(@Model.Price,"PKR")</span></label>
+                    <h2 class="fw-bolder">@Model.Name</h2>
+                    <span class="badge p-2 border w-100 text-dark" style="background-color:yellow">@Model.Category.Name</span>
+                    <span class="badge p-2 border w-100 text-dark" style="background-color:cyan">@Model.Brand.Name</span>
+                    
+                    <!-- Product price-->
+                <label class="float-right"><span class="text-info h2">@(Math.Floor(Model.Price) + ("PKR"))</span></label>
                 <br />
                 </div>
             </div>
